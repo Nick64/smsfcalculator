@@ -1,0 +1,17 @@
+name = "smsf-calculator"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "dist"
+
+# KV namespace for storing leads. Create with:
+#   wrangler kv:namespace create LEADS
+# then paste the returned id below and uncomment.
+# [[kv_namespaces]]
+# binding = "LEADS"
+# id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# Optional: webhook URL for forwarding leads to Zapier/Make/HubSpot/etc.
+# Set this in the Cloudflare Pages dashboard:
+#   Settings > Environment variables > LEAD_WEBHOOK_URL
+#
+# [vars]
+# LEAD_WEBHOOK_URL = ""
