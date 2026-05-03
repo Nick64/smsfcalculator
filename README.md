@@ -1,4 +1,4 @@
-# SMSF Investment Property Calculator
+# SMSF Investment Property Calculator 
 
 An online lifecycle calculator for property held inside a Self Managed Super Fund (SMSF), built for **Elite Wealth Creators**. Models cash flow, tax, capital gain, and after-tax ROI year-by-year — with state-based stamp duty, P&I or interest-only loans, scenario comparison, branded PDF export, and lead capture.
 
