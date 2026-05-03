@@ -16,14 +16,14 @@ export function Field({
   if (type === "select") {
     return (
       <div className="mb-3">
-        <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium mb-1">
+        <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium mb-1">
           {label}
         </label>
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className="w-full bg-white border border-stone-300 rounded-sm px-2.5 py-1.5 text-sm font-medium text-stone-900 focus:border-emerald-800 focus:outline-none focus:ring-1 focus:ring-emerald-800/20 disabled:bg-stone-100 disabled:text-stone-400"
+          className="w-full bg-[#1c1e22] border border-[#2a2d33] rounded-sm px-2.5 py-1.5 text-sm font-medium text-stone-100 focus:border-[#2b8fe0] focus:outline-none focus:ring-1 focus:ring-[#2b8fe0]/30 disabled:bg-[#141518] disabled:text-stone-600"
         >
           {options &&
             options.map((opt) => (
@@ -41,7 +41,7 @@ export function Field({
     return (
       <div className="mb-3 flex items-center justify-between">
         <div className="flex-1 pr-3">
-          <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium">
+          <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium">
             {label}
           </label>
           {hint && <p className="text-[10.5px] text-stone-500 mt-0.5 leading-snug">{hint}</p>}
@@ -50,7 +50,7 @@ export function Field({
           type="button"
           onClick={() => onChange(!value)}
           className={`relative inline-flex h-5 w-9 flex-shrink-0 rounded-full transition-colors ${
-            value ? "bg-emerald-800" : "bg-stone-300"
+            value ? "bg-[#2b8fe0]" : "bg-[#2a2d33]"
           }`}
         >
           <span
@@ -65,7 +65,7 @@ export function Field({
 
   return (
     <div className="mb-3">
-      <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium mb-1">
+      <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium mb-1">
         {label}
       </label>
       <div className="relative">
@@ -82,7 +82,7 @@ export function Field({
           onChange={(e) =>
             onChange(e.target.value === "" ? 0 : parseFloat(e.target.value))
           }
-          className={`w-full bg-white border border-stone-300 rounded-sm py-1.5 text-sm font-medium text-stone-900 tabular-nums focus:border-emerald-800 focus:outline-none focus:ring-1 focus:ring-emerald-800/20 disabled:bg-stone-100 disabled:text-stone-400 ${
+          className={`w-full bg-[#1c1e22] border border-[#2a2d33] rounded-sm py-1.5 text-sm font-medium text-stone-100 tabular-nums focus:border-[#2b8fe0] focus:outline-none focus:ring-1 focus:ring-[#2b8fe0]/30 disabled:bg-[#141518] disabled:text-stone-600 ${
             prefix ? "pl-6" : "pl-2.5"
           } ${suffix ? "pr-8" : "pr-2.5"}`}
         />
@@ -100,15 +100,15 @@ export function Field({
 export function Section({ title, icon: Icon, defaultOpen = false, children }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-stone-200 last:border-b-0">
+    <div className="border-b border-[#2a2d33] last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-3 px-4 hover:bg-stone-50 transition-colors text-left"
+        className="w-full flex items-center justify-between py-3 px-4 hover:bg-[#1c1e22] transition-colors text-left"
       >
         <div className="flex items-center gap-2.5">
-          <Icon size={15} className="text-emerald-900" strokeWidth={1.75} />
+          <Icon size={15} className="text-[#2b8fe0]" strokeWidth={1.75} />
           <span
-            className="text-[13px] font-semibold text-stone-900 tracking-tight"
+            className="text-[13px] font-semibold text-stone-100 tracking-tight"
             style={{ fontFamily: "Fraunces, serif" }}
           >
             {title}
@@ -126,13 +126,14 @@ export function Section({ title, icon: Icon, defaultOpen = false, children }) {
 
 export function KPICard({ label, value, sub, accent = "default", hint }) {
   const accentColors = {
-    default: "text-stone-900",
-    positive: "text-emerald-800",
-    negative: "text-orange-800",
-    gold: "text-amber-700",
+    default: "text-stone-100",
+    positive: "text-[#5DB87A]",
+    negative: "text-[#E07B5C]",
+    gold: "text-[#E5B568]",
+    blue: "text-[#4FA8F0]",
   };
   return (
-    <div className="bg-white border border-stone-200 rounded-sm p-4 flex flex-col">
+    <div className="bg-[#141518] border border-[#2a2d33] rounded-sm p-4 flex flex-col">
       <span className="text-[10px] uppercase tracking-[0.1em] text-stone-500 font-semibold leading-tight mb-2">
         {label}
       </span>
@@ -148,7 +149,7 @@ export function KPICard({ label, value, sub, accent = "default", hint }) {
         </div>
       )}
       {hint && (
-        <div className="text-[10px] text-stone-400 mt-2 italic leading-tight">{hint}</div>
+        <div className="text-[10px] text-stone-600 mt-2 italic leading-tight">{hint}</div>
       )}
     </div>
   );
@@ -156,16 +157,16 @@ export function KPICard({ label, value, sub, accent = "default", hint }) {
 
 export function ResultRow({ label, value, bold = false, indent = false, accent = "default" }) {
   const accentClasses = {
-    default: "text-stone-900",
-    positive: "text-emerald-800",
-    negative: "text-orange-800",
+    default: "text-stone-100",
+    positive: "text-[#5DB87A]",
+    negative: "text-[#E07B5C]",
     muted: "text-stone-500",
   };
   return (
     <div className={`flex items-baseline justify-between py-1 ${indent ? "pl-3" : ""}`}>
       <span
         className={`text-[12.5px] ${
-          bold ? "font-semibold text-stone-900" : "text-stone-600"
+          bold ? "font-semibold text-stone-100" : "text-stone-400"
         }`}
       >
         {label}
@@ -183,12 +184,12 @@ export function ResultRow({ label, value, bold = false, indent = false, accent =
 
 export function CardPanel({ title, children, className = "", action = null }) {
   return (
-    <div className={`bg-white border border-stone-200 rounded-sm ${className}`}>
+    <div className={`bg-[#141518] border border-[#2a2d33] rounded-sm ${className}`}>
       {(title || action) && (
-        <div className="px-4 py-2.5 border-b border-stone-200 flex items-center justify-between">
+        <div className="px-4 py-2.5 border-b border-[#2a2d33] flex items-center justify-between">
           {title && (
             <h3
-              className="text-[13px] font-semibold text-stone-900 tracking-tight"
+              className="text-[13px] font-semibold text-stone-100 tracking-tight"
               style={{ fontFamily: "Fraunces, serif" }}
             >
               {title}
@@ -223,11 +224,11 @@ export function LegendDot({ color, label, dashed = false }) {
 
 export function Pill({ children, variant = "default" }) {
   const variants = {
-    default: "bg-stone-100 text-stone-700 border-stone-200",
-    success: "bg-emerald-50 text-emerald-800 border-emerald-200",
-    warning: "bg-amber-50 text-amber-900 border-amber-200",
-    danger: "bg-orange-50 text-orange-900 border-orange-200",
-    forest: "bg-emerald-900 text-emerald-50 border-emerald-900",
+    default: "bg-[#1c1e22] text-stone-300 border-[#2a2d33]",
+    success: "bg-[#5DB87A]/10 text-[#5DB87A] border-[#5DB87A]/30",
+    warning: "bg-[#E5B568]/10 text-[#E5B568] border-[#E5B568]/30",
+    danger: "bg-[#E07B5C]/10 text-[#E07B5C] border-[#E07B5C]/30",
+    blue: "bg-[#2b8fe0]/15 text-[#4FA8F0] border-[#2b8fe0]/40",
   };
   return (
     <span

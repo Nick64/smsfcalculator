@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --color-forest: #1f4232;
-  --color-sand: #f7f4ee;
-  --color-gold: #b8924a;
-  --color-rust: #a04830;
+  --color-bg: #0a0a0b;
+  --color-surface: #141518;
+  --color-elevated: #1c1e22;
+  --color-border: #2a2d33;
+  --color-text: #f5f5f4;
+  --color-muted: #9ca0a8;
+  --color-blue: #2b8fe0;
+  --color-accent: #e5b568;
 }
 
 html,
 body,
 #root {
   height: 100%;
-  background-color: #f7f4ee;
+  background-color: #0a0a0b;
   font-family: "Manrope", system-ui, sans-serif;
-  color: #1a1f1b;
+  color: #f5f5f4;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,10 +44,10 @@ input[type="number"] {
   }
   body {
     background: white !important;
+    color: black !important;
   }
 }
 
-/* Scrollbar styling for inputs panel */
 aside::-webkit-scrollbar {
   width: 6px;
 }
@@ -51,9 +55,9 @@ aside::-webkit-scrollbar-track {
   background: transparent;
 }
 aside::-webkit-scrollbar-thumb {
-  background: #d6d1c4;
+  background: #2a2d33;
   border-radius: 3px;
 }
 aside::-webkit-scrollbar-thumb:hover {
-  background: #b8b3a5;
+  background: #3a3d44;
 }

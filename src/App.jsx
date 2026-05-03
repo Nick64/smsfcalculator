@@ -55,7 +55,6 @@ export default function App() {
 
   const handlePdfClick = () => {
     if (leadDetails) {
-      // Already captured details this session
       generatePDFReport({ inputs, results, leadDetails });
     } else {
       setPendingPdfDownload(true);
@@ -66,7 +65,6 @@ export default function App() {
   const handleLeadModalClose = (success) => {
     setShowLeadModal(false);
     if (success && pendingPdfDownload) {
-      // The lead form sets `leadDetails` via callback below
       setTimeout(() => {
         setPendingPdfDownload(false);
       }, 200);
@@ -76,47 +74,53 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-[#0a0a0b]">
       {/* Header */}
-      <header className="border-b border-stone-300 bg-stone-50/40">
-        <div className="max-w-[1480px] mx-auto px-6 py-6 flex items-center justify-between gap-4 flex-wrap">
-          <div>
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-emerald-900 font-semibold mb-1.5">
-              <span className="inline-block w-5 h-px bg-emerald-900" />
-              Elite Wealth Creators
+      <header className="border-b border-[#2a2d33] bg-[#141518]">
+        <div className="max-w-[1480px] mx-auto px-6 py-5 flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-4">
+            <img
+              src="/ELITE_LOGO.png"
+              alt="Elite Wealth Creators"
+              className="w-14 h-14 flex-shrink-0"
+            />
+            <div>
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#4FA8F0] font-semibold mb-1">
+                <span className="inline-block w-5 h-px bg-[#2b8fe0]" />
+                Elite Wealth Creators
+              </div>
+              <h1
+                className="text-[24px] md:text-[30px] leading-none text-stone-100"
+                style={{
+                  fontFamily: "Fraunces, serif",
+                  fontWeight: 500,
+                  fontVariationSettings: "'opsz' 144",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                SMSF Property Calculator
+              </h1>
+              <p className="text-[11.5px] text-stone-500 mt-1 italic">
+                Your future built on property
+              </p>
             </div>
-            <h1
-              className="text-[28px] md:text-[34px] leading-none text-stone-900"
-              style={{
-                fontFamily: "Fraunces, serif",
-                fontWeight: 500,
-                fontVariationSettings: "'opsz' 144",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              SMSF Property Calculator
-            </h1>
-            <p className="text-[12.5px] text-stone-600 mt-1.5 max-w-xl leading-relaxed">
-              Project the full lifecycle economics of holding investment property inside
-              a Self Managed Super Fund — cash flow, tax, capital gain, and after-tax ROI.
-            </p>
           </div>
           <div className="flex items-center gap-2 no-print">
             <button
               onClick={handleReset}
-              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-stone-600 hover:text-stone-900 px-3 py-2 border border-stone-300 rounded-sm hover:bg-white transition-colors font-medium"
+              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-stone-400 hover:text-stone-100 px-3 py-2 border border-[#2a2d33] rounded-sm hover:bg-[#1c1e22] hover:border-[#3a3d44] transition-colors font-medium"
             >
               <RotateCcw size={12} /> Reset
             </button>
             <button
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-stone-700 hover:text-stone-900 px-3 py-2 border border-stone-300 rounded-sm hover:bg-white transition-colors font-medium"
+              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-stone-300 hover:text-stone-100 px-3 py-2 border border-[#2a2d33] rounded-sm hover:bg-[#1c1e22] hover:border-[#3a3d44] transition-colors font-medium"
             >
               <Printer size={12} /> Print
             </button>
             <button
               onClick={handlePdfClick}
-              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-stone-50 bg-emerald-900 hover:bg-emerald-800 px-3 py-2 rounded-sm transition-colors font-medium"
+              className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-white bg-[#2b8fe0] hover:bg-[#4FA8F0] px-3 py-2 rounded-sm transition-colors font-semibold"
             >
               <Download size={12} /> Download PDF
             </button>
@@ -145,9 +149,8 @@ export default function App() {
 
           <ResultsPanel inputs={inputs} results={results} />
 
-          {/* Disclaimer */}
-          <div className="bg-stone-100/70 border border-stone-200 rounded-sm p-4 text-[11px] text-stone-600 leading-relaxed">
-            <p className="font-semibold text-stone-800 mb-1.5 uppercase tracking-[0.08em] text-[10px]">
+          <div className="bg-[#141518] border border-[#2a2d33] rounded-sm p-4 text-[11px] text-stone-400 leading-relaxed">
+            <p className="font-semibold text-stone-200 mb-1.5 uppercase tracking-[0.08em] text-[10px]">
               Important disclaimer
             </p>
             <p>
@@ -178,14 +181,7 @@ export default function App() {
         trigger={pendingPdfDownload ? "pdf" : "save"}
         inputs={inputs}
         results={results}
-        onClose={(success) => {
-          handleLeadModalClose(success);
-          if (success && pendingPdfDownload) {
-            // Trigger PDF download after modal closes
-            // Get the form details from the modal's last submission via window event
-            // (simpler: the modal could pass details up, but for now we use a single field)
-          }
-        }}
+        onClose={(success) => handleLeadModalClose(success)}
         onSuccess={(details) => {
           setLeadDetails(details);
           if (pendingPdfDownload) {

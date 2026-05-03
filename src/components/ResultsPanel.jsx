@@ -29,9 +29,9 @@ export function ResultsPanel({ inputs, results }) {
   const whoPaysData = useMemo(
     () =>
       [
-        { name: "Tenant", value: r.tenantPays * 100, fill: "#1F4232" },
-        { name: "Tax Office", value: r.taxmanPays * 100, fill: "#B8924A" },
-        { name: "You", value: r.youPay * 100, fill: "#A04830" },
+        { name: "Tenant", value: r.tenantPays * 100, fill: "#2b8fe0" },
+        { name: "Tax Office", value: r.taxmanPays * 100, fill: "#E5B568" },
+        { name: "You", value: r.youPay * 100, fill: "#E07B5C" },
       ].filter((d) => d.value > 0.01),
     [r.tenantPays, r.taxmanPays, r.youPay],
   );
@@ -40,13 +40,13 @@ export function ResultsPanel({ inputs, results }) {
     <div className="space-y-5">
       {/* CONCESSIONAL CAP WARNING */}
       {r.overCap && (
-        <div className="bg-amber-50 border border-amber-300 rounded-sm p-3 flex items-start gap-3">
-          <AlertCircle size={16} className="text-amber-700 flex-shrink-0 mt-0.5" />
+        <div className="bg-[#E5B568]/10 border border-[#E5B568]/40 rounded-sm p-3 flex items-start gap-3">
+          <AlertCircle size={16} className="text-[#E5B568] flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <div className="text-[12px] font-semibold text-amber-900 mb-0.5">
+            <div className="text-[12px] font-semibold text-[#E5B568] mb-0.5">
               Concessional contributions exceed the cap
             </div>
-            <div className="text-[11.5px] text-amber-800 leading-relaxed">
+            <div className="text-[11.5px] text-[#E5B568] leading-relaxed">
               SGC + salary sacrifice ({fmtCurrency(r.totalConcessional)}) exceeds
               the {fmtCurrency(r.concessionalCap)} concessional cap by{" "}
               <strong>{fmtCurrency(r.overCapAmount)}</strong>. The excess is taxed
@@ -88,7 +88,7 @@ export function ResultsPanel({ inputs, results }) {
       <CardPanel
         title={`Wealth trajectory over ${inputs.holdingYears} years`}
         action={
-          <Pill variant={inputs.loanType === "InterestOnly" ? "default" : "forest"}>
+          <Pill variant={inputs.loanType === "InterestOnly" ? "default" : "blue"}>
             {inputs.loanType === "InterestOnly" ? "Interest Only" : "P&I Loan"}
           </Pill>
         }
@@ -108,36 +108,39 @@ export function ResultsPanel({ inputs, results }) {
             >
               <defs>
                 <linearGradient id="propGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#1F4232" stopOpacity={0.18} />
-                  <stop offset="100%" stopColor="#1F4232" stopOpacity={0.02} />
+                  <stop offset="0%" stopColor="#2b8fe0" stopOpacity={0.35} />
+                  <stop offset="100%" stopColor="#2b8fe0" stopOpacity={0.05} />
                 </linearGradient>
                 <linearGradient id="equityGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#B8924A" stopOpacity={0.18} />
-                  <stop offset="100%" stopColor="#B8924A" stopOpacity={0.02} />
+                  <stop offset="0%" stopColor="#E5B568" stopOpacity={0.35} />
+                  <stop offset="100%" stopColor="#E5B568" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
-              <CartesianGrid stroke="#E7E2D6" strokeDasharray="2 4" vertical={false} />
+              <CartesianGrid stroke="#2a2d33" strokeDasharray="2 4" vertical={false} />
               <XAxis
                 dataKey="year"
-                tick={{ fontSize: 11, fill: "#6B6F6A" }}
-                axisLine={{ stroke: "#D6D1C4" }}
+                tick={{ fontSize: 11, fill: "#9ca0a8" }}
+                axisLine={{ stroke: "#2a2d33" }}
                 tickLine={false}
                 tickFormatter={(v) => `Y${v}`}
               />
               <YAxis
-                tick={{ fontSize: 11, fill: "#6B6F6A" }}
+                tick={{ fontSize: 11, fill: "#9ca0a8" }}
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={(v) => fmtCurrencyShort(v)}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#FFFFFF",
-                  border: "1px solid #D6D1C4",
+                  backgroundColor: "#1c1e22",
+                  border: "1px solid #2a2d33",
                   borderRadius: 2,
                   fontSize: 12,
                   fontFamily: "Manrope, sans-serif",
+                  color: "#f5f5f4",
                 }}
+                itemStyle={{ color: "#f5f5f4" }}
+                labelStyle={{ color: "#9ca0a8" }}
                 formatter={(v, name) => [fmtCurrency(v), name]}
                 labelFormatter={(l) => `Year ${l}`}
               />
@@ -145,7 +148,7 @@ export function ResultsPanel({ inputs, results }) {
                 type="monotone"
                 dataKey="propValue"
                 name="Property Value"
-                stroke="#1F4232"
+                stroke="#2b8fe0"
                 strokeWidth={2}
                 fill="url(#propGrad)"
               />
@@ -153,7 +156,7 @@ export function ResultsPanel({ inputs, results }) {
                 type="monotone"
                 dataKey="equity"
                 name="Equity"
-                stroke="#B8924A"
+                stroke="#E5B568"
                 strokeWidth={2}
                 fill="url(#equityGrad)"
               />
@@ -161,7 +164,7 @@ export function ResultsPanel({ inputs, results }) {
                 type="monotone"
                 dataKey="cumulativeCF"
                 name="Cumulative Cash Flow"
-                stroke="#A04830"
+                stroke="#E07B5C"
                 strokeWidth={2}
                 dot={false}
                 strokeDasharray="4 3"
@@ -169,10 +172,10 @@ export function ResultsPanel({ inputs, results }) {
             </AreaChart>
           </ResponsiveContainer>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mt-3 text-[11px] text-stone-600">
-          <LegendDot color="#1F4232" label="Property Value" />
-          <LegendDot color="#B8924A" label="Equity (Value − Loan)" />
-          <LegendDot color="#A04830" label="Cumulative Cash Flow" dashed />
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mt-3 text-[11px] text-stone-400">
+          <LegendDot color="#2b8fe0" label="Property Value" />
+          <LegendDot color="#E5B568" label="Equity (Value − Loan)" />
+          <LegendDot color="#E07B5C" label="Cumulative Cash Flow" dashed />
         </div>
       </CardPanel>
 
@@ -207,7 +210,7 @@ export function ResultsPanel({ inputs, results }) {
                         className="inline-block w-2 h-2 rounded-full"
                         style={{ backgroundColor: d.fill }}
                       />
-                      <span className="text-[12px] text-stone-700 font-medium">
+                      <span className="text-[12px] text-stone-300 font-medium">
                         {d.name}
                       </span>
                     </div>
@@ -218,7 +221,7 @@ export function ResultsPanel({ inputs, results }) {
                       {d.value.toFixed(1)}%
                     </span>
                   </div>
-                  <div className="h-1 bg-stone-100 rounded-full overflow-hidden">
+                  <div className="h-1 bg-[#1c1e22] rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full"
                       style={{
@@ -231,7 +234,7 @@ export function ResultsPanel({ inputs, results }) {
               ))}
             </div>
           </div>
-          <div className="border-t border-stone-200 mt-4 pt-3 space-y-1">
+          <div className="border-t border-[#2a2d33] mt-4 pt-3 space-y-1">
             <ResultRow
               label="Weekly outgoings"
               value={fmtCurrency(r.weeklyOutgoings, 2)}
@@ -263,7 +266,7 @@ export function ResultsPanel({ inputs, results }) {
             value={fmtPct(r.netYieldAfterInterest)}
             accent={r.netYieldAfterInterest >= 0 ? "positive" : "negative"}
           />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow label="Annual rental income" value={fmtCurrency(r.annualRental)} />
           <ResultRow
             label="Total annual outgoings"
@@ -292,7 +295,7 @@ export function ResultsPanel({ inputs, results }) {
             accent={r.afterTaxCashFlow >= 0 ? "positive" : "negative"}
             bold
           />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow
             label="Monthly loan payment"
             value={fmtCurrency(r.monthlyLoanPayment, 2)}
@@ -311,7 +314,7 @@ export function ResultsPanel({ inputs, results }) {
             accent="muted"
             indent
           />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow label="Property cost base" value={fmtCurrency(r.propertyCostBase)} bold />
           <ResultRow
             label="Less capital works deducted"
@@ -320,7 +323,7 @@ export function ResultsPanel({ inputs, results }) {
             indent
           />
           <ResultRow label="Reduced cost base" value={fmtCurrency(r.reducedCostBase)} bold />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow
             label="Gross gain"
             value={fmtCurrency(r.grossGain)}
@@ -333,7 +336,7 @@ export function ResultsPanel({ inputs, results }) {
             value={fmtCurrency(r.capitalGainTax)}
             accent={r.capitalGainTax > 0 ? "negative" : "muted"}
           />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           {inputs.loanType === "PrincipalAndInterest" && (
             <ResultRow
               label="Total principal repaid"
@@ -393,7 +396,7 @@ export function ResultsPanel({ inputs, results }) {
             accent="muted"
           />
           <ResultRow label="SMSF pre-tax cash flow" value={fmtCurrency(r.smsfPreTaxCF)} bold />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow
             label="Less 15% contributions tax"
             value={"−" + fmtCurrency(r.smsfTaxOnContributions)}
@@ -410,7 +413,7 @@ export function ResultsPanel({ inputs, results }) {
             accent={r.smsfAfterTaxCF >= 0 ? "positive" : "negative"}
             bold
           />
-          <div className="border-t border-stone-200 my-3 mb-2" />
+          <div className="border-t border-[#2a2d33] my-3 mb-2" />
           <p className="text-[11px] text-stone-500 leading-snug italic">
             Concessional cap is currently {fmtCurrency(r.concessionalCap)} p.a.
             Contributions above the cap may incur Division 293 tax. Verify with
@@ -424,7 +427,7 @@ export function ResultsPanel({ inputs, results }) {
         <div className="overflow-x-auto -mx-4 px-4">
           <table className="w-full text-[11.5px] tabular-nums">
             <thead>
-              <tr className="border-b border-stone-300 text-stone-600 text-[10px] uppercase tracking-[0.06em]">
+              <tr className="border-b border-[#2a2d33] text-stone-400 text-[10px] uppercase tracking-[0.06em]">
                 <th className="text-left py-2 font-semibold">Year</th>
                 <th className="text-right py-2 font-semibold">Property</th>
                 <th className="text-right py-2 font-semibold">Gross Rent</th>
@@ -441,28 +444,28 @@ export function ResultsPanel({ inputs, results }) {
             </thead>
             <tbody>
               {r.projection.map((y) => (
-                <tr key={y.year} className="border-b border-stone-100 hover:bg-stone-50/40">
-                  <td className="py-2 font-medium text-stone-700">Y{y.year}</td>
-                  <td className="text-right py-2 text-stone-900">{fmtCurrency(y.propValue)}</td>
-                  <td className="text-right py-2 text-stone-700">{fmtCurrency(y.grossRent)}</td>
+                <tr key={y.year} className="border-b border-[#1c1e22] hover:bg-[#1c1e22]/60">
+                  <td className="py-2 font-medium text-stone-300">Y{y.year}</td>
+                  <td className="text-right py-2 text-stone-100">{fmtCurrency(y.propValue)}</td>
+                  <td className="text-right py-2 text-stone-300">{fmtCurrency(y.grossRent)}</td>
                   <td className="text-right py-2 text-stone-500">−{fmtCurrency(y.outgoings).replace("$", "$")}</td>
                   {inputs.loanType === "PrincipalAndInterest" && (
                     <td className="text-right py-2 text-stone-500">{fmtCurrency(y.loanBalance)}</td>
                   )}
-                  <td className={`text-right py-2 ${y.preTaxCF >= 0 ? "text-emerald-800" : "text-orange-800"}`}>
+                  <td className={`text-right py-2 ${y.preTaxCF >= 0 ? "text-[#5DB87A]" : "text-[#E07B5C]"}`}>
                     {fmtCurrency(y.preTaxCF)}
                   </td>
-                  <td className={`text-right py-2 ${y.taxImpact >= 0 ? "text-emerald-800" : "text-orange-800"}`}>
+                  <td className={`text-right py-2 ${y.taxImpact >= 0 ? "text-[#5DB87A]" : "text-[#E07B5C]"}`}>
                     {y.taxImpact >= 0 ? "+" : ""}
                     {fmtCurrency(y.taxImpact)}
                   </td>
-                  <td className={`text-right py-2 font-semibold ${y.afterTaxCF >= 0 ? "text-emerald-800" : "text-orange-800"}`}>
+                  <td className={`text-right py-2 font-semibold ${y.afterTaxCF >= 0 ? "text-[#5DB87A]" : "text-[#E07B5C]"}`}>
                     {fmtCurrency(y.afterTaxCF)}
                   </td>
-                  <td className={`text-right py-2 ${y.cumulativeCF >= 0 ? "text-stone-900" : "text-orange-800"}`}>
+                  <td className={`text-right py-2 ${y.cumulativeCF >= 0 ? "text-stone-100" : "text-[#E07B5C]"}`}>
                     {fmtCurrency(y.cumulativeCF)}
                   </td>
-                  <td className="text-right py-2 font-semibold text-amber-800">
+                  <td className="text-right py-2 font-semibold text-[#E5B568]">
                     {fmtCurrency(y.equity)}
                   </td>
                 </tr>
@@ -510,7 +513,7 @@ export function ResultsPanel({ inputs, results }) {
             value={fmtCurrency(r.totalFundsRequired)}
             bold
           />
-          <div className="border-t border-stone-200 my-2.5" />
+          <div className="border-t border-[#2a2d33] my-2.5" />
           <ResultRow
             label="Less your cash investment"
             value={"−" + fmtCurrency(r.initialCashOutlay)}
@@ -523,31 +526,31 @@ export function ResultsPanel({ inputs, results }) {
             accent={r.lvr > 0.8 ? "negative" : "default"}
           />
           {r.lvr > 0.8 && (
-            <p className="text-[11px] text-orange-800 mt-2 italic">
+            <p className="text-[11px] text-[#E07B5C] mt-2 italic">
               Most SMSF lenders require LVR ≤ 70-80%.
             </p>
           )}
         </CardPanel>
 
         <CardPanel title="Borrowing & deduction notes">
-          <div className="text-[11.5px] text-stone-700 space-y-2.5 leading-relaxed">
+          <div className="text-[11.5px] text-stone-300 space-y-2.5 leading-relaxed">
             <p>
-              <span className="font-semibold text-stone-900">Stamp duty</span>{" "}
+              <span className="font-semibold text-stone-100">Stamp duty</span>{" "}
               {inputs.autoStampDuty ? `auto-calculated for ${inputs.state}` : "manually set"}: {fmtCurrency(r.stampDuty)} ({fmtPct(r.stampDuty / inputs.propertyPrice, 2)} of price).
             </p>
             <p>
-              <span className="font-semibold text-stone-900">Borrowing expenses</span> of {fmtCurrency(r.totalBorrowingExp)} are deducted at {fmtCurrency(r.borrowingExpDeduction)} per year for 5 years (ATO standard).
+              <span className="font-semibold text-stone-100">Borrowing expenses</span> of {fmtCurrency(r.totalBorrowingExp)} are deducted at {fmtCurrency(r.borrowingExpDeduction)} per year for 5 years (ATO standard).
             </p>
             <p>
-              <span className="font-semibold text-stone-900">Year-1 taxable income</span> from the property is {fmtCurrency(r.taxableIncome)} — when negative, the SMSF reduces tax on other contributions.
+              <span className="font-semibold text-stone-100">Year-1 taxable income</span> from the property is {fmtCurrency(r.taxableIncome)} — when negative, the SMSF reduces tax on other contributions.
             </p>
             <p>
-              <span className="font-semibold text-stone-900">CGT treatment:</span>{" "}
+              <span className="font-semibold text-stone-100">CGT treatment:</span>{" "}
               {inputs.smsfStage === "Pension"
                 ? "0% — assets supporting current pension liabilities are exempt."
                 : "15% with a 1/3 discount if held >12 months — effective rate of 10%."}
             </p>
-            <p className="text-stone-500 italic pt-1 border-t border-stone-200">
+            <p className="text-stone-500 italic pt-1 border-t border-[#2a2d33]">
               Stamp duty estimates use standard residential investor brackets. SMSF
               bare trust structures, foreign surcharges, or special concessions may
               alter actual duty payable. Verify with a conveyancer.

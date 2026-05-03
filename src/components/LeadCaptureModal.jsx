@@ -60,19 +60,19 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget && status !== "submitting") onClose(false);
       }}
     >
-      <div className="bg-white rounded-sm shadow-xl border border-stone-200 max-w-md w-full">
-        <div className="flex items-start justify-between px-5 py-4 border-b border-stone-200">
+      <div className="bg-[#141518] rounded-sm shadow-xl border border-[#2a2d33] max-w-md w-full">
+        <div className="flex items-start justify-between px-5 py-4 border-b border-[#2a2d33]">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.12em] text-emerald-900 font-semibold mb-0.5">
+            <div className="text-[10px] uppercase tracking-[0.12em] text-[#5DB87A] font-semibold mb-0.5">
               Elite Wealth Creators
             </div>
             <h3
-              className="text-[18px] text-stone-900 leading-tight"
+              className="text-[18px] text-stone-100 leading-tight"
               style={{ fontFamily: "Fraunces, serif", fontWeight: 500 }}
             >
               {trigger === "pdf"
@@ -82,7 +82,7 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
           </div>
           <button
             onClick={() => status !== "submitting" && onClose(false)}
-            className="text-stone-400 hover:text-stone-700 transition-colors"
+            className="text-stone-400 hover:text-stone-300 transition-colors"
           >
             <X size={18} />
           </button>
@@ -90,21 +90,21 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
 
         {status === "success" ? (
           <div className="px-5 py-10 flex flex-col items-center text-center">
-            <CheckCircle2 size={48} className="text-emerald-700 mb-3" strokeWidth={1.5} />
+            <CheckCircle2 size={48} className="text-[#5DB87A] mb-3" strokeWidth={1.5} />
             <h4
-              className="text-[20px] text-stone-900 mb-1"
+              className="text-[20px] text-stone-100 mb-1"
               style={{ fontFamily: "Fraunces, serif", fontWeight: 500 }}
             >
               Thank you, {name.split(" ")[0]}
             </h4>
-            <p className="text-[13px] text-stone-600 max-w-xs">
+            <p className="text-[13px] text-stone-400 max-w-xs">
               Your report is being prepared. One of our SMSF specialists will be in
               touch within one business day.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-5 py-4">
-            <p className="text-[12.5px] text-stone-600 mb-4 leading-relaxed">
+            <p className="text-[12.5px] text-stone-400 mb-4 leading-relaxed">
               {trigger === "pdf"
                 ? "Enter your details to download a branded PDF summary of this scenario. We'll also send a copy to your inbox."
                 : "We'll save this scenario and email you a summary."}
@@ -112,31 +112,31 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
 
             <div className="space-y-3">
               <div>
-                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium mb-1">
+                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium mb-1">
                   Full Name *
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-white border border-stone-300 rounded-sm px-3 py-2 text-sm text-stone-900 focus:border-emerald-800 focus:outline-none focus:ring-1 focus:ring-emerald-800/20"
+                  className="w-full bg-[#141518] border border-[#2a2d33] rounded-sm px-3 py-2 text-sm text-stone-100 focus:border-[#2b8fe0] focus:outline-none focus:ring-1 focus:ring-[#2b8fe0]/30"
                   required
                 />
               </div>
               <div>
-                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium mb-1">
+                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium mb-1">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-white border border-stone-300 rounded-sm px-3 py-2 text-sm text-stone-900 focus:border-emerald-800 focus:outline-none focus:ring-1 focus:ring-emerald-800/20"
+                  className="w-full bg-[#141518] border border-[#2a2d33] rounded-sm px-3 py-2 text-sm text-stone-100 focus:border-[#2b8fe0] focus:outline-none focus:ring-1 focus:ring-[#2b8fe0]/30"
                   required
                 />
               </div>
               <div>
-                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-600 font-medium mb-1">
+                <label className="block text-[11px] uppercase tracking-[0.08em] text-stone-400 font-medium mb-1">
                   Phone (Optional)
                 </label>
                 <input
@@ -144,7 +144,7 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="04xx xxx xxx"
-                  className="w-full bg-white border border-stone-300 rounded-sm px-3 py-2 text-sm text-stone-900 focus:border-emerald-800 focus:outline-none focus:ring-1 focus:ring-emerald-800/20"
+                  className="w-full bg-[#141518] border border-[#2a2d33] rounded-sm px-3 py-2 text-sm text-stone-100 focus:border-[#2b8fe0] focus:outline-none focus:ring-1 focus:ring-[#2b8fe0]/30"
                 />
               </div>
 
@@ -153,9 +153,9 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
                   type="checkbox"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 accent-emerald-800"
+                  className="mt-0.5 accent-[#2b8fe0]"
                 />
-                <span className="text-[11px] text-stone-600 leading-relaxed">
+                <span className="text-[11px] text-stone-400 leading-relaxed">
                   I agree to be contacted by Elite Wealth Creators about SMSF
                   property investment opportunities. We never share your details.
                 </span>
@@ -163,7 +163,7 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
             </div>
 
             {errorMsg && (
-              <div className="mt-3 px-3 py-2 bg-orange-50 border border-orange-200 text-orange-900 text-[11.5px] rounded-sm">
+              <div className="mt-3 px-3 py-2 bg-[#E07B5C]/10 border border-[#E07B5C]/30 text-[#E07B5C] text-[11.5px] rounded-sm">
                 {errorMsg}
               </div>
             )}
@@ -171,7 +171,7 @@ export function LeadCaptureModal({ open, onClose, onSuccess, inputs, results, tr
             <button
               type="submit"
               disabled={status === "submitting" || !consent}
-              className="w-full mt-5 bg-emerald-900 hover:bg-emerald-800 text-emerald-50 px-4 py-2.5 rounded-sm text-[12px] uppercase tracking-[0.06em] font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full mt-5 bg-[#2b8fe0] hover:bg-[#4FA8F0] text-stone-50 px-4 py-2.5 rounded-sm text-[12px] uppercase tracking-[0.06em] font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {status === "submitting" ? (
                 <>

@@ -15,9 +15,9 @@ export function InputsPanel({ inputs, setInputs, computedStampDuty }) {
   const set = (key) => (val) => setInputs((s) => ({ ...s, [key]: val }));
 
   return (
-    <div className="bg-white border border-stone-200 rounded-sm">
-      <div className="px-4 py-3 border-b border-stone-200 bg-stone-50/60">
-        <h2 className="text-[13px] font-semibold text-stone-900 uppercase tracking-[0.08em]">
+    <div className="bg-[#141518] border border-[#2a2d33] rounded-sm">
+      <div className="px-4 py-3 border-b border-[#2a2d33] bg-[#1c1e22]">
+        <h2 className="text-[13px] font-semibold text-stone-100 uppercase tracking-[0.08em]">
           Inputs
         </h2>
         <p className="text-[10.5px] text-stone-500 mt-0.5">
@@ -141,7 +141,7 @@ export function InputsPanel({ inputs, setInputs, computedStampDuty }) {
           onChange={set("interestRate")}
           step={0.05}
         />
-        <div className="border-t border-stone-200 my-3" />
+        <div className="border-t border-[#2a2d33] my-3" />
         <Field
           label="Mortgage Registration Fee"
           prefix="$"
@@ -302,7 +302,7 @@ export function InputsPanel({ inputs, setInputs, computedStampDuty }) {
           onChange={set("expenseInflation")}
           step={0.1}
         />
-        <div className="border-t border-stone-200 my-3" />
+        <div className="border-t border-[#2a2d33] my-3" />
         <div className="text-[10px] uppercase tracking-[0.08em] text-stone-500 font-semibold mb-2">
           Selling Costs
         </div>

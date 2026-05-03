@@ -22,10 +22,10 @@ export function ScenarioBar({
   }
 
   return (
-    <div className="bg-white border border-stone-200 rounded-sm p-3 flex flex-wrap items-center gap-2 no-print">
+    <div className="bg-[#141518] border border-[#2a2d33] rounded-sm p-3 flex flex-wrap items-center gap-2 no-print">
       <div className="flex items-center gap-1.5 mr-1">
-        <Bookmark size={13} className="text-emerald-900" strokeWidth={2} />
-        <span className="text-[11px] uppercase tracking-[0.08em] text-stone-700 font-semibold">
+        <Bookmark size={13} className="text-[#5DB87A]" strokeWidth={2} />
+        <span className="text-[11px] uppercase tracking-[0.08em] text-stone-300 font-semibold">
           Scenarios
         </span>
       </div>
@@ -39,17 +39,17 @@ export function ScenarioBar({
       {scenarios.map((s) => (
         <div
           key={s.id}
-          className="flex items-center gap-1 bg-stone-50 border border-stone-200 rounded-sm pl-2 pr-1 py-1 group"
+          className="flex items-center gap-1 bg-[#141518] border border-[#2a2d33] rounded-sm pl-2 pr-1 py-1 group"
         >
           <button
             onClick={() => onLoad(s)}
-            className="text-[11.5px] text-stone-700 hover:text-emerald-900 font-medium"
+            className="text-[11.5px] text-stone-300 hover:text-[#5DB87A] font-medium"
           >
             {s.name}
           </button>
           <button
             onClick={() => onDelete(s.id)}
-            className="text-stone-400 hover:text-orange-700 transition-colors p-0.5 opacity-0 group-hover:opacity-100"
+            className="text-stone-400 hover:text-[#E07B5C] transition-colors p-0.5 opacity-0 group-hover:opacity-100"
             title="Delete scenario"
           >
             <Trash2 size={11} />
@@ -72,11 +72,11 @@ export function ScenarioBar({
               }
             }}
             autoFocus
-            className="text-[11.5px] border border-stone-300 rounded-sm px-2 py-1 w-36 focus:border-emerald-800 focus:outline-none"
+            className="text-[11.5px] border border-[#2a2d33] rounded-sm px-2 py-1 w-36 focus:border-[#2b8fe0] focus:outline-none"
           />
           <button
             onClick={handleSave}
-            className="bg-emerald-900 text-emerald-50 px-2 py-1 text-[10px] uppercase tracking-[0.06em] font-semibold rounded-sm hover:bg-emerald-800"
+            className="bg-[#2b8fe0] text-stone-50 px-2 py-1 text-[10px] uppercase tracking-[0.06em] font-semibold rounded-sm hover:bg-[#4FA8F0]"
           >
             Save
           </button>
@@ -85,7 +85,7 @@ export function ScenarioBar({
               setShowSaveInput(false);
               setSavingName("");
             }}
-            className="text-stone-400 hover:text-stone-700 px-1"
+            className="text-stone-400 hover:text-stone-300 px-1"
           >
             <X size={13} />
           </button>
@@ -93,7 +93,7 @@ export function ScenarioBar({
       ) : (
         <button
           onClick={() => setShowSaveInput(true)}
-          className="flex items-center gap-1 text-[11px] text-stone-700 hover:text-emerald-900 border border-stone-300 rounded-sm px-2 py-1 hover:bg-stone-50 transition-colors"
+          className="flex items-center gap-1 text-[11px] text-stone-300 hover:text-[#5DB87A] border border-[#2a2d33] rounded-sm px-2 py-1 hover:bg-[#1c1e22] transition-colors"
         >
           <Plus size={12} /> Save current
         </button>
@@ -102,7 +102,7 @@ export function ScenarioBar({
       {scenarios.length >= 2 && (
         <button
           onClick={onOpenCompare}
-          className="ml-auto flex items-center gap-1 bg-emerald-900 text-emerald-50 hover:bg-emerald-800 text-[11px] uppercase tracking-[0.06em] font-semibold rounded-sm px-2.5 py-1 transition-colors"
+          className="ml-auto flex items-center gap-1 bg-[#2b8fe0] text-stone-50 hover:bg-[#4FA8F0] text-[11px] uppercase tracking-[0.06em] font-semibold rounded-sm px-2.5 py-1 transition-colors"
         >
           <BarChart3 size={11} /> Compare ({scenarios.length})
         </button>
@@ -119,22 +119,22 @@ export function ScenarioCompareModal({ scenarios, onClose, onLoad }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="bg-white rounded-sm shadow-xl border border-stone-200 max-w-5xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white flex items-center justify-between px-5 py-4 border-b border-stone-200">
+      <div className="bg-[#141518] rounded-sm shadow-xl border border-[#2a2d33] max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-[#141518] flex items-center justify-between px-5 py-4 border-b border-[#2a2d33]">
           <h3
-            className="text-[20px] text-stone-900"
+            className="text-[20px] text-stone-100"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 500 }}
           >
             Compare scenarios
           </h3>
           <button
             onClick={onClose}
-            className="text-stone-400 hover:text-stone-700 transition-colors"
+            className="text-stone-400 hover:text-stone-300 transition-colors"
           >
             <X size={20} />
           </button>
@@ -143,22 +143,22 @@ export function ScenarioCompareModal({ scenarios, onClose, onLoad }) {
         <div className="p-5 overflow-x-auto">
           <table className="w-full text-[12.5px]">
             <thead>
-              <tr className="border-b border-stone-300 text-[10.5px] uppercase tracking-[0.06em] text-stone-600">
-                <th className="text-left py-2 font-semibold sticky left-0 bg-white pr-3">
+              <tr className="border-b border-[#2a2d33] text-[10.5px] uppercase tracking-[0.06em] text-stone-400">
+                <th className="text-left py-2 font-semibold sticky left-0 bg-[#141518] pr-3">
                   Metric
                 </th>
                 {computed.map((s) => (
                   <th key={s.id} className="text-right py-2 font-semibold pl-3 min-w-[140px]">
                     <div className="flex flex-col items-end gap-0.5">
                       <span
-                        className="text-[14px] text-stone-900 normal-case tracking-normal"
+                        className="text-[14px] text-stone-100 normal-case tracking-normal"
                         style={{ fontFamily: "Fraunces, serif", fontWeight: 500 }}
                       >
                         {s.name}
                       </span>
                       <button
                         onClick={() => onLoad(s)}
-                        className="text-[10px] text-emerald-900 hover:text-emerald-700 normal-case tracking-normal"
+                        className="text-[10px] text-[#5DB87A] hover:text-[#5DB87A] normal-case tracking-normal"
                       >
                         Load →
                       </button>
@@ -249,9 +249,9 @@ export function ScenarioCompareModal({ scenarios, onClose, onLoad }) {
 
 function CompareRow({ label, values, accents = [], bold = false }) {
   return (
-    <tr className="border-b border-stone-100">
+    <tr className="border-b border-[#1c1e22]">
       <td
-        className={`py-2 pr-3 sticky left-0 bg-white ${bold ? "font-semibold text-stone-900" : "text-stone-600"}`}
+        className={`py-2 pr-3 sticky left-0 bg-[#141518] ${bold ? "font-semibold text-stone-100" : "text-stone-400"}`}
       >
         {label}
       </td>
@@ -259,10 +259,10 @@ function CompareRow({ label, values, accents = [], bold = false }) {
         const accent = accents[idx];
         const colorClass =
           accent === "positive"
-            ? "text-emerald-800"
+            ? "text-[#5DB87A]"
             : accent === "negative"
-              ? "text-orange-800"
-              : "text-stone-900";
+              ? "text-[#E07B5C]"
+              : "text-stone-100";
         return (
           <td
             key={idx}
@@ -281,7 +281,7 @@ function SectionRow({ label }) {
     <tr>
       <td
         colSpan={99}
-        className="pt-4 pb-1 text-[10px] uppercase tracking-[0.1em] text-stone-500 font-semibold border-b border-stone-200 sticky left-0 bg-white"
+        className="pt-4 pb-1 text-[10px] uppercase tracking-[0.1em] text-stone-500 font-semibold border-b border-[#2a2d33] sticky left-0 bg-[#141518]"
       >
         {label}
       </td>
